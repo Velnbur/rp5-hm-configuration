@@ -8,6 +8,7 @@
 
   home.packages = (with pkgs; [
     qbittorrent-nox
+    samba
   ]);
 
   programs.starship = {
@@ -41,6 +42,18 @@
       Type = "simple";
 
       ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --webui-port=8080 --save-path=/media/torrents --profile=${home.homeDirectory}/.config/qbittorrent";
+    };
+  };
+
+  systemd.user.services.samba = {
+    Unit = {
+      Description = "smbd service";
+      Documentation = [ "man:smbd(1)" ];
+    };
+
+    Service = {
+      Type = "notify";
+      ExecStart = "${pkgs.samba}/sbin/smbd --foreground --no-process-group";
     };
   };
 }
