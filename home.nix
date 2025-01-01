@@ -30,4 +30,22 @@
 
   programs.eza.enable = true;
   programs.home-manager.enable = true;
+
+  systemd.user.services.qbittorrent = {
+    Unit = {
+      Description = "qBittorrent-nox service";
+      Documentation = [ "man:qbittorrent-nox(1)" ];
+    };
+
+    Service = {
+      Type = "simple";
+
+      ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";
+
+      Environment = {
+        QBT_PROFILE = "/media/torrents";
+        QBT_WEBUI_PORT = "8080";
+      };
+    };
+  };
 }
