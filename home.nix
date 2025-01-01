@@ -42,7 +42,8 @@
 
       ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --webui-port=8080 --save-path=/media/torrents --profile=$QBT_PROFILE";
 
-      ExecStartPre = let
+      ExecStartPre =
+        let
           preStartScript = pkgs.writeScript "qbittorrent-run-prestart" ''
             #!${pkgs.bash}/bin/bash
 
@@ -51,14 +52,11 @@
               echo "Creating initial qBittorrent data directory in: $QBT_PROFILE"
               install -d -m 0755 "$QBT_PROFILE"
             fi
-         '';
+          '';
         in
-          "!${preStartScript}";
+        "!${preStartScript}";
 
-
-      Environment = {
-        QBT_PROFILE = "${home.homeDirectory}/.config/qbittorrent";
-      };
+      Environment = "\"QBT_PROFILE='${home.homeDirectory}/.config/qbittorrent'\"";
     };
   };
 }
