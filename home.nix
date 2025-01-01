@@ -8,7 +8,6 @@
 
   home.packages = (with pkgs; [
     qbittorrent-nox
-    samba
   ]);
 
   programs.starship = {
