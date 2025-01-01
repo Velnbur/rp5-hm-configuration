@@ -1,10 +1,14 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs.helix.enable = true;
   programs.bat.enable = true;
 
   home.stateVersion = "25.05";
   home.username = "velnbur";
   home.homeDirectory = "/home/velnbur";
+
+  home.packages = (with pkgs; [
+    qbittorrent-nox
+  ]);
 
   programs.starship = {
     enable = true;
