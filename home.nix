@@ -53,7 +53,25 @@
 
     Service = {
       Type = "notify";
-      ExecStart = "${pkgs.samba}/sbin/smbd --foreground --no-process-group";
+      ExecStart = "${pkgs.samba}/sbin/smbd --foreground --no-process-group --configfile=${home.homeDirectory}/.config/samba/samba.conf";
     };
+  };
+
+  home.file.".config/samba/samba.conf" = {
+    enable = true;
+    text = ''
+      [global]
+	   server role = standalone server
+           map to guest = Bad User
+	   usershare allow guests = yes
+	   hosts allow = 192.168.0.0/16
+	   hosts deny = 0.0.0.0/0
+
+      [torrents]
+	   comment = Shared torrents
+	   guest ok = yes
+           path = /media/torrents
+	   read only = yes
+    '';
   };
 }
