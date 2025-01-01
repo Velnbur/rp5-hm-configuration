@@ -61,18 +61,18 @@
     enable = true;
     text = ''
       [global]
-	   server role = standalone server
+           server role = standalone server
            map to guest = Bad User
-	   usershare allow guests = yes
-	   hosts allow = 192.168.0.0/16
-	   hosts deny = 0.0.0.0/0
+           usershare allow guests = yes
+           hosts allow = 192.168.0.0/16
+           hosts deny = 0.0.0.0/0
            log file = ${home.homeDirectory}/.local/state/samba/%m.log
 
       [torrents]
-	   comment = Shared torrents
-	   guest ok = yes
+           comment = Shared torrents
+           guest ok = yes
            path = /media/torrents
-	   read only = yes
+           read only = yes
     '';
   };
 }
