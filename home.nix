@@ -67,10 +67,10 @@
            hosts allow = 192.168.0.0/16
            hosts deny = 0.0.0.0/0
            log file = ${home.homeDirectory}/.local/logs/samba/%m.log
-           state directory = ${home.homeDirectory}.local/state/samba
-           cache directory = ${home.homeDirectory}.cache/samba
-           lock directory = ${home.homeDirectory}.local/state/samba
-           pid directory = ${home.homeDirectory}.local/state/samba
+           state directory = ${home.homeDirectory}/.local/state/samba
+           cache directory = ${home.homeDirectory}/.cache/samba
+           lock directory = ${home.homeDirectory}/.local/state/samba
+           pid directory = ${home.homeDirectory}/.local/state/samba
 
 
       [torrents]
