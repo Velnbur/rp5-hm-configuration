@@ -4,6 +4,7 @@
 
   home.stateVersion = "25.05";
   home.username = "velnbur";
+  home.homeDirectory = "/home/velnbur";
 
   programs.starship = {
     enable = true;
@@ -24,4 +25,5 @@
   };
 
   programs.eza.enable = true;
+  programs.home-manager.enable = true;
 }
