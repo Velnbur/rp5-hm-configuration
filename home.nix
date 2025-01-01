@@ -66,6 +66,7 @@
 	   usershare allow guests = yes
 	   hosts allow = 192.168.0.0/16
 	   hosts deny = 0.0.0.0/0
+           log file = ${home.homeDirectory}/.local/state/samba/%m.log
 
       [torrents]
 	   comment = Shared torrents
