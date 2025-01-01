@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: rec {
   programs.helix.enable = true;
   programs.bat.enable = true;
 
@@ -40,11 +40,24 @@
     Service = {
       Type = "simple";
 
-      ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";
+      ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox --webui-port=8080 --save-path=/media/torrents --profile=$QBT_PROFILE";
+
+      ExecStartPre = let
+          preStartScript = pkgs.writeScript "qbittorrent-run-prestart" ''
+            #!${pkgs.bash}/bin/bash
+
+            # Create data directory if it doesn't exist
+            if ! test -d "$QBT_PROFILE"; then
+              echo "Creating initial qBittorrent data directory in: $QBT_PROFILE"
+              install -d -m 0755 "$QBT_PROFILE"
+            fi
+         '';
+        in
+          "!${preStartScript}";
+
 
       Environment = {
-        QBT_PROFILE = "/media/torrents";
-        QBT_WEBUI_PORT = "8080";
+        QBT_PROFILE = "${home.homeDirectory}/.config/qbittorrent";
       };
     };
   };
