@@ -20,9 +20,15 @@
     enable = true;
     settings = {
       vim_keys = true;
+      truecolor = false;
     };
   };
 
   programs.eza.enable = true;
   programs.home-manager.enable = true;
+
+  programs.zellij = {
+    enable = true;
+    enableBashIntegration = true;
+  };
 }
