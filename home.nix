@@ -3,6 +3,9 @@
     pkgs.yaml-language-server
   ];
 
+  home.sessionVariables = {
+    SUDO_EDITOR = "${pkgs.helix}/bin/hx";
+  };
 
   programs.helix = {
     enable = true;
