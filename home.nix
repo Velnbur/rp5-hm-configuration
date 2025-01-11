@@ -1,4 +1,9 @@
-{ ... }: {
+{ pkgs, ... }: {
+  home.packages = [
+    pkgs.yaml-language-server
+  ];
+
+
   programs.helix = {
     enable = true;
     defaultEditor = true;
